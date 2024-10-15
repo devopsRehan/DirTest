@@ -13,5 +13,7 @@ jobs:
     
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          if [ ! -d "${{github.workflow}}" ]; then             
+            mkdir ${{github.workflow}}                         
+          fi  
+          mkdir -p ${{github.workflow}}/${{ github.run_number }} 
