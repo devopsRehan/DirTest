@@ -15,7 +15,7 @@ jobs:
     steps:      
       - uses: actions/checkout@v4 
     
-      - name: Run a multi-line script
+      - name: Run script
         run: |
           if [ ! -d "${{github.workflow}}" ]; then             
             mkdir ${{github.workflow}}                         
