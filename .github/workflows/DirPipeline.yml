@@ -24,7 +24,7 @@ jobs:
 
           ls
 
-          cd mkdir ${{github.workflow}}
+          cd ${{github.workflow}}
 
           ls
 
