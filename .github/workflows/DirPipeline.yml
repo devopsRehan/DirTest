@@ -21,3 +21,10 @@ jobs:
             mkdir ${{github.workflow}}                         
           fi  
           mkdir -p ${{github.workflow}}/${{ github.run_number }} 
+
+      - name: Deploy report to Github Pages   
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master
+          publish_dir: ./${{github.workflow}}   
