@@ -22,7 +22,7 @@ jobs:
           ls
           cd ..
           echo "----------------------------------------------------------------------"
-          max=10
+          max=20
           dir_count=$(find ${{github.workflow}} -mindepth 1 -maxdepth 1 -type d | wc -l)
 
           if [ "$dir_count" -gt "$max" ]; then
