@@ -21,7 +21,7 @@ jobs:
           cd ${{github.workflow}}
           ls
           max=10
-          dir_count=$(find ${{github.workflow}}-mindepth 1 -maxdepth 1 -type d | wc -l)
+          dir_count=$(find ${{github.workflow}} -mindepth 1 -maxdepth 1 -type d | wc -l)
 
           if [ "$dir_count" -gt "$max" ]; then
             # Find the directory with the smallest numeric name
