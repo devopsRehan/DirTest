@@ -30,6 +30,7 @@ jobs:
             oldest_dir=$(find ${{github.workflow}} -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort -n | head -n 1)
             echo "Deleting the oldest directory: $oldest_dir"
             rm -rf "${{github.workflow}}$oldest_dir"
+            ls
           else
             echo "There are $max or fewer directories. No deletion necessary."
           fi
