@@ -20,6 +20,8 @@ jobs:
           ls
           cd ${{github.workflow}}
           ls
+          cd ..
+          echo "----------------------------------------------------------------------"
           max=10
           dir_count=$(find ${{github.workflow}} -mindepth 1 -maxdepth 1 -type d | wc -l)
 
