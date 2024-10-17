@@ -17,22 +17,17 @@ jobs:
     
       - name: Run script
         run: |
-          if [ ! -d "${{github.workflow}}" ]; then             
-            mkdir ${{github.workflow}}                         
-          fi  
-          mkdir -p ${{github.workflow}}/${{ github.run_number }} 
-
           ls
-
           cd ${{github.workflow}}
-
           ls
+          max=10
+          dir_count=$(find ${{github.workflow}}-mindepth 1 -maxdepth 1 -type d | wc -l)
 
-          # git config --global user.name "GitHub Actions"
-          # git config --global user.email "actions@github.com"
-          # git fetch origin master   
-          # git stash 
-          # git checkout master          
-          # git add .
-          # git commit -m "Workflow-Testing_${{github.run_number}}"  
-          # git push origin master  
+          if [ "$dir_count" -gt "$max" ]; then
+            # Find the directory with the smallest numeric name
+            oldest_dir=$(find ${{github.workflow}} -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort -n | head -n 1)
+            echo "Deleting the oldest directory: $oldest_dir"
+            rm -rf "${{github.workflow}}$oldest_dir"
+          else
+            echo "There are $max or fewer directories. No deletion necessary."
+          fi
